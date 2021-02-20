@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+#include<string.h>
+#define ll long long
+#define dd long double
+#define s(x) scanf("%lld",&x)
+#define sstr(x) scanf("%s",&x)
+#define p(x) printf("%lld",x)
+#define ps() printf(" ")
+#define pc(x) printf("%c",x)
+#define pstr(x) printf("%s",x)
+#define pn() puts("")
+#define fu(init,n,c) for(int i=init;i<n;i=i+c)
+using namespace std;
+struct node{
+int flag,co;
+struct node* next[26];
+};
+struct node* get_node(){
+struct node* n=(struct node*)malloc(sizeof(struct node));
+n->flag=0;
+n->co=0;
+for(int i=0;i<26;i++)n->next[i]=NULL;
+return n;
+};
+int main(){
+ios_base::sync_with_stdio(0);
+cin.tie(0);
+ll i,j,t,k,n;
+//string operatoin,name;
+struct node* head=get_node();
+struct node* tem;
+//cin>>t;
+s(t);
+while(t--){
+tem=head;
+//cin>>operatoin>>name;
+char operation[22];
+char name[22];
+
+sstr(operation);
+sstr(name);
+if(operation[0]=='a'){
+
+    n=strlen(name);
+    for(i=0;i<n;i++){
+        if(tem->next[name[i]-'a']==NULL)tem->next[name[i]-'a']=get_node();
+        tem=tem->next[name[i]-'a'];
+        tem->co++;
+    }
+    tem->flag=1;
+}
+else{
+    n=strlen(name);
+    for(i=0;i<n;i++){
+        if(tem->next[name[i]-'a']==NULL)break;
+         tem=tem->next[name[i]-'a'];
+    }
+    if(i!=n){cout<<0<<endl;continue;}
+
+    cout<<tem->co<<endl;
+}
+
+}
+}

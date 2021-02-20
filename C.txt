@@ -1,0 +1,61 @@
+#include<iostream>
+#include<stdio.h>
+#include<vector>
+#include<cmath>
+#define ll long long
+#define dd long double
+#define s(x) scanf("%lld",&x)
+#define p(x) printf("%lld",x)
+#define ps() printf(" ")
+#define pc(x) printf("%c",x)
+#define pstr(x) printf("%s",x)
+#define pn() puts("")
+#define fu(init,n,c) for(int i=init;i<n;i=i+c)
+using namespace std;
+int main(){
+ios_base::sync_with_stdio(0);
+cin.tie(0);
+ll i,j,t,k;
+ll ar[10001];
+s(t);
+while(t--){
+ll x,n;
+s(n);
+
+for(i=0;i<=n;i++)ar[i]=-1;
+for(i=0;i<n-1;i++){
+s(j);
+s(k);
+ar[k]=j;
+}
+s(j);s(k);
+vector<ll>p1;vector<ll>p2;
+ll p=ar[j];
+p1.push_back(j);
+//cout<<"p1"<<endl;
+while(p!=-1){
+       // cout<<p<<endl;
+    p1.push_back(p);
+     p=ar[p];
+}
+ p=ar[k];
+p2.push_back(k);
+//cout<<"p2"<<endl;
+while(p!=-1){
+       // cout<<p<<endl;
+    p2.push_back(p);
+    p=ar[p];
+}
+n=min(p1.size(),p2.size());
+ll n1=p1.size();
+ll n2=p2.size();
+ll an=-1;
+for(i=0;i<n;i++){
+   //p(p1[n1-i-1]);pstr("--");p(p2[n2-i-1]);pn();
+    if(p1[n1-i-1]!=p2[n2-i-1])
+       break;
+       an=p1[n1-i-1];
+}
+p(an);pn();
+}
+}

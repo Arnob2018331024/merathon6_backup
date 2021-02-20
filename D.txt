@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+#include<cstdlib>
+
+#include<vector>
+#define ll long long
+#define dd long double
+#define s(x) scanf("%lld",&x)
+#define sstr(x) scanf("%s",&x)
+#define p(x) printf("%lld",x)
+#define ps() printf(" ")
+#define pc(x) printf("%c",x)
+#define pstr(x) printf("%s",x)
+#define pn() puts("")
+#define fu(init,n,c) for(int i=init;i<n;i=i+c)
+using namespace std;
+
+int main(){
+ios_base::sync_with_stdio(0);
+cin.tie(0);
+ll i,j,t,k,n,m,u,vv;
+s(t);
+while(t--){
+s(n);s(m);
+vector<pair<int,int> >v[n+1];
+for(i=0;i<n-1;i++){
+    s(u);s(vv);s(k);
+    v[u].push_back(make_pair(vv,k));
+    v[vv].push_back(make_pair(u,k));
+}
+//pstr("----");pn();
+for(i=0;i<m;i++){
+    s(u);s(vv);
+    int l[n+1]={};
+    l[u]=1;
+    queue<int>q;
+    q.push(u);
+    while(!q.empty()){
+
+        ll tem=q.front();
+        q.pop();
+       // p(tem);pn();
+        for(j=0;j<v[tem].size();j++){
+
+            if(l[v[tem][j].first]==0){
+
+                q.push(v[tem][j].first);
+
+                l[v[tem][j].first]=l[tem]+v[tem][j].second;
+            }
+            if(v[tem][j].first==vv)break;
+        }
+        if(j<v[tem].size()&&v[tem][j].first==vv)break;
+
+    }
+    p(l[vv]-1);pn();
+
+
+}
+}
+
+}
+
